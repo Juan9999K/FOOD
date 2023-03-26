@@ -1,8 +1,8 @@
-const express = require('express');
+const express = require('express');//para simplemente configurar el servidor
 const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
-const routes = require('./routes/index.js');
+const bodyParser = require('body-parser');//hoy en dia es una instancia de node para leer archivos JSON
+const morgan = require('morgan');// para saber cuales fueron los endpoints de las rutas
+const routes = require('./routes/index');
 
 require('./db.js');
 
@@ -15,7 +15,7 @@ server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // update to match the domain you will make the request from
+  res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request from
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');

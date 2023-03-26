@@ -17,12 +17,15 @@
 //     =====`-.____`.___ \_____/___.-`___.-'=====
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
+const server = require('./src/app.js');// Es para que mi servidor me pueda funcionar
+const { conn } = require('./src/db.js');//Es la conexion que tiene la DB con sequelize
+const port = process.env.PORT || 3001;
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
+conn.sync({ force: false }).then(() => {
+  server.listen(process.env.PORT, async () => {
+    console.log(`server listening in port ${port}`); // eslint-disable-line no-console
   });
 });
+// una promesa es un  valor que puede estar disponible cuando se crea la promesa pero se cree que este disponible en un momento futuro
+//cuando va ser a una funte externa  una api o bd va ser asyncronismo
